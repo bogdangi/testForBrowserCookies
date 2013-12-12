@@ -1,0 +1,51 @@
+*** Settings ***
+
+Library         HttpLibrary.HTTP
+Library         Selenium2Library  timeout=5  implicit_wait=5
+
+Resource        variables.txt
+Resource        keywords.txt
+
+Test Setup      Start And Open Browser
+Test Teardown   Stop And Close All Browsers
+
+*** Test Cases ***
+
+Simply Add Cookie
+    [Documentation]     Test cookie mechanism which you can find in 
+    ...                 RFC 2109 Example 1 [Page 12]
+    ...
+    ...                 Most detail of request and response headers has been 
+    ...                 omitted.  Assume the user agent has no stored cookies.
+
+    [Tags]  Example-1  RFC-2109
+
+    Set Customer Cookie
+    Verify All Cookies
+    Page Should Contain  Customer="WILE_E_COYOTE"
+    Set Rocket_Launcher_0001 Cookie
+    Verify All Cookies
+    Page Should Contain  Part_Number="Rocket_Launcher_0001"
+    Set Shipping Cookie
+    Verify All Cookies
+    Page Should Contain  Shipping="FedEx"
+
+Check Path Dependency For Cookies
+    [Documentation]     Test cookie mechanism which you can find in 
+    ...                 RFC 2109 Example 2 [Page 13]
+    ...
+    ...                 This example illustrates the effect of the Path
+    ...                 attribute.  All detail of request and response headers
+    ...                 has been omitted.  Assume the user agent has no stored
+    ...                 cookies.
+
+    [Tags]  Example-2  RFC-2109
+
+    Set Rocket_Launcher_0001 Cookie
+    Set Riding_Rocket_0023 Cookie With Specific Path
+    Verify All Cookies In Specific Path  /path
+    Page Should Contain      Part_Number="Rocket_Launcher_0001"
+    Page Should Contain      Part_Number="Riding_Rocket_0023"
+    Verify All Cookies
+    Page Should Contain      Part_Number="Rocket_Launcher_0001"
+    Page Should Not Contain  Part_Number="Riding_Rocket_0023"

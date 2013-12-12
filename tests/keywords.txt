@@ -1,0 +1,45 @@
+*** Settings ***
+
+Library         HttpLibrary.HTTP
+Library         OperatingSystem
+Library         Selenium2Library  timeout=5  implicit_wait=5
+
+Resource        variables.txt
+
+*** Keywords ***
+
+Start And Open Browser
+    Create HTTP Context     ${HOST}
+    Open browser            ${HOST}  ${BROWSER}
+
+Stop And Close All Browsers
+    Close all browsers
+
+Start Mockserver
+    Start Process   tests/mockserver.py ${PORT}
+    Sleep           1
+
+Stop Mockserver
+    POST            http://${HOST}/kill
+    Stop Process
+    Sleep           1
+
+Verify All Cookies
+    Go to  ${HOST}/all_cookies
+
+Verify All Cookies In Specific Path
+    [arguments]   ${path}
+
+    Go to  ${HOST}${path}/all_cookies
+
+Set Customer Cookie
+    Go to  ${HOST}/set_cookie/customer
+
+Set Rocket_Launcher_0001 Cookie
+    Go to  ${HOST}/set_cookie/rocket_launcher
+
+Set Riding_Rocket_0023 Cookie With Specific Path
+    Go to  ${HOST}/set_cookie/path/riding_rocket
+
+Set Shipping Cookie
+    Go to  ${HOST}/set_cookie/shipping
