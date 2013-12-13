@@ -2,6 +2,8 @@ language: python
 python:
   - 2.7
 install:
+  - sudo echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' > /etc/apt/sources.list.d/google-chrome.list
+  - sudo apt-get update
   - sudo apt-get install google-chrome-stable
   - wget http://chromedriver.storage.googleapis.com/2.7/chromedriver_linux32.zip
   - unzip chromedriver_linux32.zip
