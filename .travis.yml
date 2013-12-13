@@ -8,7 +8,7 @@ install:
   - sudo apt-get install google-chrome-stable
   - wget http://chromedriver.storage.googleapis.com/2.7/chromedriver_linux32.zip
   - unzip chromedriver_linux32.zip
-  - sudo ln chromedriver /usr/local/bin/chromedriver
+  - sudo ln chromedriver /bin/chromedriver
   - python bootstrap.py
   - bin/buildout
 before_script:
