@@ -1,6 +1,8 @@
 Тестовое задание на вакансию Инженера по автоматизации тестирования (Яндекс.Браузер)
 ====================================================================================
 
+.. image:: https://travis-ci.org/bogdangi/testForBrowserCookies.png?branch=master   :target: https://travis-ci.org/bogdangi/testForBrowserCookies
+
 Вам необходимо составить и автоматизировать необходимый и достаточный набор
 тестовых сценариев для проверки работы механизма http cookie в браузере
 `google chrome`.
@@ -15,8 +17,8 @@
 INSTALL
 =======
 
-Instal Google Chrome
---------------------
+Install Google Chrome
+---------------------
 
 For example for Ubuntu::
 
