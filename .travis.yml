@@ -2,10 +2,10 @@ language: python
 python:
   - 2.7
 install:
-  - apt-get install google-chrome-stable
+  - sudo apt-get install google-chrome-stable
   - wget http://chromedriver.storage.googleapis.com/2.7/chromedriver_linux32.zip
   - unzip chromedriver_linux32.zip
-  - ln chromedriver /usr/local/bin/chromedriver
+  - sudo ln chromedriver /usr/local/bin/chromedriver
   - python bootstrap.py
   - bin/buildout
 before_script:
