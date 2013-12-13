@@ -2,5 +2,5 @@
 
 ${PORT}     36503
 ${HOST}     localhost:${PORT}
-${BROWSER}  chrome
-#${BROWSER}  firefox
+#${BROWSER}  chrome
+${BROWSER}  firefox
